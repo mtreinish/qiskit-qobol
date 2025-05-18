@@ -1,0 +1,26 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. bell_circuit.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 NUM_QUBITS BINARY-LONG VALUE 2.
+       01 NUM_CLBITS BINARY-LONG VALUE 2.
+       01 H_GATE BINARY-SHORT VALUE 1.
+       01 CX_GATE BINARY-SHORT VALUE 20.
+       01 QUBIT_MEASURE BINARY-LONG VALUE 0.
+       01 CLBIT_MEASURE BINARY-LONG VALUE 0.
+       01 CIRCUIT USAGE POINTER.
+
+       PROCEDURE DIVISION.
+       000-Main.
+           DISPLAY "Building Bell Circuit.".
+           CALL 'QiskitCreateCircuit' USING NUM_QUBITS, NUM_CLBITS,
+               CIRCUIT.
+           CALL 'QiskitCircuitGate' USING CIRCUIT, H_GATE.
+           CALL 'QiskitCircuitGate' USING CIRCUIT, CX_GATE.
+           CALL 'QiskitCircuitMeasure' USING CIRCUIT, QUBIT_MEASURE,
+           CLBIT_MEASURE.
+           MOVE 1 to QUBIT_MEASURE, CLBIT_MEASURE.
+           CALL 'QiskitCircuitMeasure' USING CIRCUIT, QUBIT_MEASURE,
+           CLBIT_MEASURE.
+           STOP RUN.
