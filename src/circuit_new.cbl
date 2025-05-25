@@ -19,14 +19,16 @@
        WORKING-STORAGE SECTION.
 
        LINKAGE SECTION.
-       01 NumQubits BINARY-LONG UNSIGNED.
-       01 NumClbits BINARY-LONG UNSIGNED.
+       01 NumQubits USAGE BINARY-LONG UNSIGNED.
+       01 NumClbits USAGE BINARY-LONG UNSIGNED.
        01 Circuit USAGE POINTER.
            
        PROCEDURE DIVISION USING BY VALUE NumQubits, NumClbits, BY
            REFERENCE Circuit.
        000-Main.
-           call 'qk_circuit_new' USING BY CONTENT NumQubits,
-                                       BY CONTENT NumClbits,
+           DISPLAY "Creating new circuit with qubits: " NumQubits.
+           DISPLAY "CLBITS: " NumClbits.
+           call 'qk_circuit_new' USING BY VALUE NumQubits,
+                                       BY VALUE NumClbits,
                                        RETURNING Circuit.
            GOBACK.
