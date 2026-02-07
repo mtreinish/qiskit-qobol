@@ -17,26 +17,29 @@
        
        DATA DIVISION.
        WORKING-STORAGE SECTION.
+       01 GateNumParams USAGE BINARY-LONG UNSIGNED.
 
        LINKAGE SECTION.
        01 Gate BINARY-SHORT UNSIGNED.
        01 Circuit USAGE POINTER.
-       01 GateNumQubits BINARY-LONG UNSIGNED.
        01 GateQubits.
-           02 QUBITS OCCURS 10 TIMES
-                  DEPENDING ON GateNumQubits.
-               03 QUBIT BINARY-SHORT UNSIGNED.
-       01 GateNumParams BINARY-LONG UNSIGNED.
+           02 QUBIT BINARY-SHORT UNSIGNED OCCURS 10 TIMES.
        01 GateParams.
-           02 PARMS OCCURS 3 TIMES
-                 DEPENDING ON GateNumParams.
-               03 PARAM COMP-2.
+           02 PARAM COMP-2 OCCURS 3 TIMES.
 
        PROCEDURE DIVISION USING BY VALUE Gate, BY
-           REFERENCE GateQubits, GateParams, Circuit.
+           REFERENCE Circuit, GateQubits, GateParams.
        000-Main.
-           call 'qk_circuit_gate' USING BY REFERENCE Circuit,
-                                        BY CONTENT Gate,
-                                        BY REFERENCE GateQubits,
-                                        BY REFERENCE GateParams.
+           CALL 'qk_gate_num_params' USING BY VALUE Gate
+               RETURNING GateNumParams.
+           IF GateNumParams > 0
+               CALL 'qk_circuit_gate' USING BY VALUE Circuit,
+                                      BY VALUE Gate,
+                                      BY VALUE ADDRESS OF QUBIT(1),
+                                      BY VALUE ADDRESS OF PARAM(1)
+           ELSE
+               CALL 'qq_circuit_gate_no_params' USING BY VALUE Circuit,
+                                      BY VALUE Gate,
+                                      BY VALUE ADDRESS OF QUBIT(1)
+           END-IF
            GOBACK.
