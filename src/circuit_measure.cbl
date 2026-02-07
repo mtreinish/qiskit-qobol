@@ -26,7 +26,7 @@
        PROCEDURE DIVISION USING BY VALUE QUBIT, CLBIT, BY
            REFERENCE Circuit.
        000-Main.
-           call 'qk_circuit_measure' USING BY REFERENCE Circuit,
-                                           BY CONTENT QUBIT,
-                                           BY CONTENT CLBIT,
+           call 'qk_circuit_measure' USING BY VALUE Circuit,
+                                           BY VALUE QUBIT,
+                                           BY VALUE CLBIT.
            GOBACK.

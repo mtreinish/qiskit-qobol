@@ -12,25 +12,25 @@
 
        IDENTIFICATION DIVISION.
        PROGRAM-ID. QiskitCircuitGateNoParams.
-       
+
        ENVIRONMENT DIVISION.
-       
+
        DATA DIVISION.
        WORKING-STORAGE SECTION.
 
        LINKAGE SECTION.
        01 Gate BINARY-SHORT UNSIGNED.
        01 Circuit USAGE POINTER.
-       01 GateQubits BINARY-SHORT UNSIGNED OCCURS 10 TIMES.
+       01 GateQubits.
+           02 QUBIT BINARY-SHORT UNSIGNED OCCURS 10 TIMES.
 
        PROCEDURE DIVISION USING BY VALUE Gate, BY
            REFERENCE GateQubits, Circuit.
        000-Main.
            DISPLAY "Circuit: ", Circuit.
            DISPLAY "GATE: ", Gate.
-           DISPLAY "GateQubits: ", GateQubits(1).
-           call 'qk_circuit_gate' USING BY REFERENCE Circuit,
-                                        BY VALUE Gate,
-                                        BY REFERENCE GateQubits(1),
-                                        BY REFERENCE NULL.
+           call 'qq_circuit_gate_no_params'
+               USING BY VALUE Circuit,
+               BY VALUE Gate,
+               BY VALUE ADDRESS OF QUBIT(1).
            GOBACK.
