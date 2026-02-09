@@ -32,14 +32,8 @@
        000-Main.
            CALL 'qk_gate_num_params' USING BY VALUE Gate
                RETURNING GateNumParams.
-           IF GateNumParams > 0
-               CALL 'qk_circuit_gate' USING BY VALUE Circuit,
-                                      BY VALUE Gate,
-                                      BY VALUE ADDRESS OF QUBIT(1),
-                                      BY VALUE ADDRESS OF PARAM(1)
-           ELSE
-               CALL 'qq_circuit_gate_no_params' USING BY VALUE Circuit,
-                                      BY VALUE Gate,
-                                      BY VALUE ADDRESS OF QUBIT(1)
-           END-IF
+           CALL 'qk_circuit_gate' USING BY VALUE Circuit,
+                                  BY VALUE Gate,
+                                  BY VALUE ADDRESS OF QUBIT(1),
+                                  BY VALUE ADDRESS OF PARAM(1).
            GOBACK.
