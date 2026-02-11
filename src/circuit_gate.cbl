@@ -23,7 +23,7 @@
        01 Gate BINARY-SHORT UNSIGNED.
        01 Circuit USAGE POINTER.
        01 GateQubits.
-           02 QUBIT BINARY-SHORT UNSIGNED OCCURS 10 TIMES.
+           02 QUBIT BINARY-SHORT UNSIGNED OCCURS 3 TIMES.
        01 GateParams.
            02 PARAM COMP-2 OCCURS 3 TIMES.
 
@@ -34,6 +34,6 @@
                RETURNING GateNumParams.
            CALL 'qk_circuit_gate' USING BY VALUE Circuit,
                                   BY VALUE Gate,
-                                  BY VALUE ADDRESS OF QUBIT(1),
-                                  BY VALUE ADDRESS OF PARAM(1).
+                                  BY VALUE ADDRESS OF GateQubits,
+                                  BY VALUE ADDRESS OF GateParams.
            GOBACK.

@@ -22,18 +22,21 @@
        01 QUBIT_MEASURE USAGE BINARY-LONG VALUE 0.
        01 CLBIT_MEASURE USAGE BINARY-LONG VALUE 0.
        01 GateQubits.
-           02 QUBIT USAGE BINARY-SHORT UNSIGNED OCCURS 10 TIMES.
+           02 QUBIT USAGE BINARY-SHORT UNSIGNED OCCURS 3 TIMES.
        01 GateParams.
            02 PARAM USAGE COMP-2 OCCURS 3 TIMES.
        01 CIRCUIT USAGE POINTER.
+       01 SERVICE USAGE POINTER.
+       01 Backend USAGE POINTER.
 
        PROCEDURE DIVISION.
        000-Main.
            DISPLAY "Building Bell Circuit.".
            MOVE 2 to NUM_QUBITS.
            MOVE 2 to NUM_CLBITS.
-           CALL 'QiskitCreateCircuit' USING BY VALUE NUM_QUBITS,
-           NUM_CLBITS, BY REFERENCE CIRCUIT.
+           CALL 'QiskitCreateCircuit' USING
+               BY VALUE NUM_QUBITS, NUM_CLBITS,
+               BY REFERENCE CIRCUIT.
            MOVE 0 to QUBIT(1).
            CALL 'QiskitCircuitGate' USING BY VALUE H_GATE,
                BY REFERENCE Circuit,
@@ -50,4 +53,12 @@
            MOVE 1 to QUBIT_MEASURE, CLBIT_MEASURE.
            CALL 'QiskitCircuitMeasure' USING BY VALUE QUBIT_MEASURE,
                CLBIT_MEASURE, BY REFERENCE Circuit.
+           CALL 'ServiceNew' USING BY REFERENCE SERVICE.
+           CALL 'LeastBusyBackend' USING 
+               BY REFERENCE Service,
+               BY REFERENCE Backend.
+           CALL 'ExecuteSampler' USING
+               BY REFERENCE Service,
+               BY REFERENCE Backend,
+               BY REFERENCE Circuit.
            STOP RUN.
