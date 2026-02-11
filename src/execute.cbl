@@ -23,9 +23,10 @@
           02 TRANSPILED_CIRCUIT USAGE POINTER.
           02 TRANSPILE_LAYOUT USAGE POINTER.
        01 TRANSPILE_OPTIONS.
-          02 optimization_level BINARY-SHORT UNSIGNED VALUE 2.
-          02 seed BINARY-LONG VALUE 42.
-          02 approximation_degree COMP-2 VALUE 1.0. 
+          02 optimization_level PIC 9(2) COMP-5 VALUE 2.
+          02 FILLER PIC X(7).
+          02 seed PIC S9(18) COMP-5 VALUE 42.
+          02 approximation_degree USAGE COMP-2 VALUE 1.0.
        01 SHOTS BINARY-LONG VALUE 10000. 
 
        LINKAGE SECTION.
@@ -42,7 +43,7 @@
            CALL 'qk_transpile' USING
                BY VALUE CIRCUIT,
                BY VALUE TARGET,
-               BY VALUE ADDRESS OF TRANSPILE_OPTIONS,
+               BY REFERENCE TRANSPILE_OPTIONS,
                BY VALUE ADDRESS OF TranspileResults,
                BY VALUE 0.
            CALL 'qkrt_sampler_job_run' USING
