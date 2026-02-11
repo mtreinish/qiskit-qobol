@@ -41,7 +41,7 @@
                RETURNING Target.
            CALL 'qk_transpile' USING
                BY VALUE CIRCUIT,
-               BY VALUE ADDRESS OF TARGET,
+               BY VALUE TARGET,
                BY VALUE ADDRESS OF TRANSPILE_OPTIONS,
                BY VALUE ADDRESS OF TranspileResults,
                BY VALUE 0.
