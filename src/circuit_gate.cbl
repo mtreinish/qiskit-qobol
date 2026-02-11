@@ -23,7 +23,7 @@
        01 Gate BINARY-SHORT UNSIGNED.
        01 Circuit USAGE POINTER.
        01 GateQubits.
-           02 QUBIT BINARY-SHORT UNSIGNED OCCURS 3 TIMES.
+           02 QUBIT PIC S9(4) OCCURS 3 TIMES.
        01 GateParams.
            02 PARAM COMP-2 OCCURS 3 TIMES.
 
