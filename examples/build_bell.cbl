@@ -61,6 +61,9 @@
                BY REFERENCE Service,
                BY REFERENCE BACKEND-NAME,
                BY REFERENCE Backend.
+           IF Backend = NULL
+               STOP RUN
+           END-IF.
            CALL 'ExecuteSampler' USING
                BY REFERENCE Service,
                BY REFERENCE Backend,
