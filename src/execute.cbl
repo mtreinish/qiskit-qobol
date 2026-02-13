@@ -18,7 +18,6 @@
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 Target USAGE POINTER.
-       01 Job USAGE POINTER.
        01 TranspileResults.
           02 TRANSPILED_CIRCUIT USAGE POINTER.
           02 TRANSPILE_LAYOUT USAGE POINTER.
@@ -27,14 +26,16 @@
           02 FILLER PIC X(7).
           02 seed PIC S9(18) COMP-5 VALUE 42.
           02 approximation_degree USAGE COMP-2 VALUE 1.0.
-       01 SHOTS BINARY-LONG VALUE 10000. 
+       01 SHOTS BINARY-LONG VALUE 1000.
 
        LINKAGE SECTION.
        01 Service USAGE POINTER.
        01 Backend USAGE POINTER.
        01 Circuit USAGE POINTER.
-           
-       PROCEDURE DIVISION USING BY REFERENCE Service, Backend, Circuit.
+       01 Job USAGE POINTER.
+
+       PROCEDURE DIVISION USING BY REFERENCE Service, Backend, Circuit,
+           Job.
        000-Main.
            CALL 'qkrt_get_backend_target' USING 
                BY VALUE Service
@@ -46,6 +47,8 @@
                BY REFERENCE TRANSPILE_OPTIONS,
                BY VALUE ADDRESS OF TranspileResults,
                BY VALUE 0.
+           DISPLAY " ".
+           DISPLAY "Submitting sampler job.".
            CALL 'qkrt_sampler_job_run' USING
                BY VALUE ADDRESS OF Job,
                BY VALUE Service,

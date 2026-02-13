@@ -23,6 +23,7 @@
            02 USER_AGENT USAGE POINTER.
            02 FILENAME USAGE POINTER.
            02 ACCOUNT_NAME USAGE POINTER.
+      *> Null-terminated because its address is passed to C.
        01 COBOL_USER_AGENT PIC X(18) VALUE "QISKIT_QOBOL/0.1" & x"00".
 
        LINKAGE SECTION.

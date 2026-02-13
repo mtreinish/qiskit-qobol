@@ -28,6 +28,9 @@
        01 CIRCUIT USAGE POINTER.
        01 SERVICE USAGE POINTER.
        01 Backend USAGE POINTER.
+       01 Job USAGE POINTER.
+       01 Samples USAGE POINTER.
+       01 BACKEND-NAME PIC X(32) VALUE "ibm_torino".
 
        PROCEDURE DIVISION.
        000-Main.
@@ -54,11 +57,22 @@
            CALL 'QiskitCircuitMeasure' USING BY VALUE QUBIT_MEASURE,
                CLBIT_MEASURE, BY REFERENCE Circuit.
            CALL 'ServiceNew' USING BY REFERENCE SERVICE.
-           CALL 'LeastBusyBackend' USING 
+           CALL 'BackendByName' USING
                BY REFERENCE Service,
+               BY REFERENCE BACKEND-NAME,
                BY REFERENCE Backend.
+           IF Backend = NULL
+               STOP RUN
+           END-IF.
            CALL 'ExecuteSampler' USING
                BY REFERENCE Service,
                BY REFERENCE Backend,
-               BY REFERENCE Circuit.
+               BY REFERENCE Circuit,
+               BY REFERENCE Job.
+           CALL 'JobResults' USING
+               BY REFERENCE Service,
+               BY REFERENCE Job,
+               BY REFERENCE Samples.
+           CALL 'Histogram' USING
+               BY REFERENCE Samples.
            STOP RUN.
