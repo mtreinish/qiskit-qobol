@@ -39,7 +39,7 @@
 
        100-Poll-Status.
            PERFORM WITH TEST AFTER UNTIL StatusCode > 1
-               CALL "CBL_OC_NANOSLEEP" USING SLEEP-TIME
+               CALL "CBL_GC_NANOSLEEP" USING SLEEP-TIME
                CALL 'qkrt_job_status' USING
                    BY VALUE ADDRESS OF StatusCode,
                    BY VALUE Service,
