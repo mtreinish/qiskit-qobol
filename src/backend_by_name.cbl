@@ -22,16 +22,16 @@
        01 ResultCount PIC 9(18) COMP-5.
        01 Idx PIC 9(18) COMP-5.
        01 NamePtr USAGE POINTER.
-       01 CNameBuffer PIC X(256).
+       01 CNameBuffer PIC X(32).
        01 Found PIC 9 VALUE 0.
 
        LINKAGE SECTION.
        01 Service USAGE POINTER.
-       01 BackendName PIC X(256).
+       01 BackendName PIC X(32).
        01 Backend USAGE POINTER.
        01 BackendArray.
           02 BackendPtr USAGE POINTER OCCURS 256 TIMES.
-       01 CNameStr PIC X(256).
+       01 CNameStr PIC X(32).
 
        PROCEDURE DIVISION USING BY REFERENCE Service, BackendName,
            Backend.
