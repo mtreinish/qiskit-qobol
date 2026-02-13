@@ -1,6 +1,6 @@
       / This code is part of Qiskit Qobol.
       /
-      / (C) Copyright Matthew Treinish 2025.
+      / (C) Copyright Ian Hincks 2026.
       /
       / This code is licensed under the Apache License, Version 2.0. You may
       / obtain a copy of this license in the LICENSE.txt file in the root directory
