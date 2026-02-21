@@ -69,7 +69,7 @@
                BY REFERENCE Backend,
                BY REFERENCE Circuit,
                BY REFERENCE Job.
-           CALL 'JobResults' USING
+           CALL 'SamplerJobResults' USING
                BY REFERENCE Service,
                BY REFERENCE Job,
                BY REFERENCE Samples.

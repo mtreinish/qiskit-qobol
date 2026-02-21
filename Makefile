@@ -10,8 +10,23 @@ build:
 		src/least_busy_backend.cbl \
 		src/backend_by_name.cbl \
 		src/execute.cbl \
-		src/job_results.cbl \
+		src/sampler_job_results.cbl \
 		src/histogram.cbl \
 		-debug \
+		-l qiskit -L ../qiskit-core/dist/c/lib -I ../qiskit-core/dist/c/include \
+		-l qiskit_ibm_runtime -L ../qiskit-ibm-runtime-c/target/release -I ../qiskit-ibm-runtime-c/include
+	cobc -fbinary-byteorder=native -fstatic-call -w -x \
+		examples/estimator_example.cbl \
+		src/circuit_gate.cbl \
+		src/circuit_measure.cbl \
+		src/circuit_new.cbl \
+		src/service_new.cbl \
+		src/least_busy_backend.cbl \
+		src/backend_by_name.cbl \
+		src/estimate.cbl \
+		src/estimator_job_results.cbl \
+		src/obs_new.cbl \
+		src/obs_add_term.cbl \
+		--debug \
 		-l qiskit -L ../qiskit-core/dist/c/lib -I ../qiskit-core/dist/c/include \
 		-l qiskit_ibm_runtime -L ../qiskit-ibm-runtime-c/target/release -I ../qiskit-ibm-runtime-c/include
