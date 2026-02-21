@@ -59,7 +59,7 @@
            END-PERFORM.
 
        200-Fetch-Results.
-           CALL 'qkrt_job_results' USING
+           CALL 'qkrt_sampler_job_results' USING
                BY VALUE ADDRESS OF Samples,
                BY VALUE Service,
                BY VALUE Job

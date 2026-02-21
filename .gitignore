@@ -1,2 +1,3 @@
+build_deps/
 build_bell
 qiskit_interface.o

@@ -13,5 +13,8 @@ build:
 		src/job_results.cbl \
 		src/histogram.cbl \
 		-debug \
-		-l qiskit -L ../qiskit-core/dist/c/lib -I ../qiskit-core/dist/c/include \
-		-l qiskit_ibm_runtime -L ../qiskit-ibm-runtime-c/target/release -I ../qiskit-ibm-runtime-c/include
+		-l qiskit \
+		-l qiskit_ibm_runtime
+
+clean:
+	rm build_bell
