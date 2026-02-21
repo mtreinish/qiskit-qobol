@@ -13,8 +13,8 @@ build:
 		src/sampler_job_results.cbl \
 		src/histogram.cbl \
 		-debug \
-		-l qiskit -L ../qiskit-core/dist/c/lib -I ../qiskit-core/dist/c/include \
-		-l qiskit_ibm_runtime -L ../qiskit-ibm-runtime-c/target/release -I ../qiskit-ibm-runtime-c/include
+		-l qiskit \
+		-l qiskit_ibm_runtime
 	cobc -fbinary-byteorder=native -fstatic-call -w -x \
 		examples/estimator_example.cbl \
 		src/circuit_gate.cbl \
@@ -28,5 +28,8 @@ build:
 		src/obs_new.cbl \
 		src/obs_add_term.cbl \
 		--debug \
-		-l qiskit -L ../qiskit-core/dist/c/lib -I ../qiskit-core/dist/c/include \
-		-l qiskit_ibm_runtime -L ../qiskit-ibm-runtime-c/target/release -I ../qiskit-ibm-runtime-c/include
+		-l qiskit \
+		-l qiskit_ibm_runtime
+
+clean:
+	rm build_bell
