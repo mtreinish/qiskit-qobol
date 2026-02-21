@@ -63,15 +63,6 @@
                BY REFERENCE FINAL_LAYOUT(1)
                BY VALUE NUM_OUTPUT_QUBITS
                RETURNING RET_CODE.
-           DISPLAY "RETURNED: " RET_CODE.
-           DISPLAY " ".
-           DISPLAY "Submitting estimator job.".
-           DISPLAY "With:".
-           DISPLAY "job: " JOB.
-           DISPLAY "service: " Service.
-           DISPLAY "Backend: " Backend.
-           DISPLAY "Circuit: " TRANSPILED_CIRCUIT.
-           DISPLAY "OBSi: " Observable.
            CALL 'qkrt_estimator_job_run' USING
                BY VALUE ADDRESS OF JOB,
                BY VALUE Service,
