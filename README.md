@@ -96,6 +96,18 @@ Results:
   0x2: 13
 ```
 
+### `estimator_example.cbl`
+
+This script will build a bell state circuit of the same form as
+`build_bell` does but without measurements. In addition it
+constructs a `SparseObservable` object to compute the expectation
+value of. The circuit is then transpiled for `ibm_torino` with
+optimization level 2, the resulting layout is then applied to
+the observable. This transpiled circuit and modified observable
+are then submitted as an estimator job on `ibm_torino, and when
+the job finishes executing the program prints the computed
+expectation value.
+
 ## Repository Organization
 
 There are two main directories in the repository, `examples/` and
