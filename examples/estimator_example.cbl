@@ -62,23 +62,20 @@
                BY REFERENCE Circuit,
                BY REFERENCE GateQubits,
                BY REFERENCE GateParams.
-           CALL 'QiskitCircuitMeasure' USING BY VALUE QUBIT_MEASURE,
-               CLBIT_MEASURE, BY REFERENCE Circuit.
-           MOVE 1 to QUBIT_MEASURE, CLBIT_MEASURE.
-           CALL 'QiskitCircuitMeasure' USING BY VALUE QUBIT_MEASURE,
-               CLBIT_MEASURE, BY REFERENCE Circuit.
            CALL 'QiskitZeroObs' USING BY VALUE NUM_QUBITS
                BY REFERENCE Observable.
+      / Z Term
            MOVE 1 TO TERM(1).
-           MOVE 1 TO TERM(2).
+      / Y Term
+           MOVE 3 TO TERM(2).
            MOVE 0 to IDX(1).
            MOVE 1 TO IDX(2).
            CALL 'QiskitAddTerm' USING
                BY VALUE NUM_QUBITS,
                BY VALUE NumBitTerms,
+               BY REFERENCE Coeff_COMPLEX,
                BY REFERENCE Terms,
                BY REFERENCE Term_Indices,
-               BY VALUE Coeff_COMPLEX,
                BY REFERENCE Observable.
 
            CALL 'ServiceNew' USING BY REFERENCE SERVICE.
@@ -87,6 +84,7 @@
                BY REFERENCE BACKEND-NAME,
                BY REFERENCE Backend.
            IF Backend = NULL
+               DISPLAY "Invalid backend 'ibm_torino'"
                STOP RUN
            END-IF.
            CALL 'ExecuteEstimator' USING
@@ -103,5 +101,7 @@
                BY REFERENCE ExpectationValues,
                BY VALUE 0
                RETURNING EV.
+           DISPLAY ""
+           DISPLAY "Result:"
            DISPLAY "Expectation Value: {}" EV.
            STOP RUN.

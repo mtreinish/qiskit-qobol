@@ -44,8 +44,7 @@
        01 Observable USAGE POINTER.
 
        PROCEDURE DIVISION USING BY VALUE NumQubits, NumBitTerms,
-           BY REFERENCE BitTerms, BY REFERENCE Indices,
-           BY VALUE Coeff, BY REFERENCE Observable.
+           BY REFERENCE Coeff, BitTerms, Indices, Observable.
        000-Main.
            MOVE NumQubits TO NUM_QUBITS.
            MOVE NumBitTerms TO LEN.
