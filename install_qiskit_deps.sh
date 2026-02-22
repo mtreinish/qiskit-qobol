@@ -49,6 +49,7 @@ pushd qiskit-ibm-runtime-c
 git remote add mtreinish https://github.com/mtreinish/qiskit-ibm-runtime-c || true
 git fetch mtreinish
 git checkout add-user-defined-service-path
+git merge mtreinish/evs-copy --no-commit
 cargo build --release
 sudo cp -r include/* /usr/local/include/.
 sudo cp target/release/libqiskit_ibm_runtime.so /usr/local/lib/.

@@ -133,5 +133,6 @@
            CALL 'EstimatorJobResults' USING
                BY REFERENCE Service,
                BY REFERENCE Job,
-               BY REFERENCE ExpectationValues.
+               BY REFERENCE ExpectationValues
+               BY VALUE 1.
            STOP RUN.
