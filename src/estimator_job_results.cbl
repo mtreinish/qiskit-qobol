@@ -24,6 +24,9 @@
        01 SLEEP-TIME.
           02 SLEEP-SECS PIC 9(9) COMP-5 VALUE 5.
           02 SLEEP-NS PIC 9(9) COMP-5 VALUE 0.
+       01 EV_COUNT USAGE BINARY-LONG UNSIGNED.
+       01 IDX USAGE BINARY-LONG UNSIGNED VALUE 0.
+       01 EV USAGE COMP-2.
 
        LINKAGE SECTION.
        01 Service USAGE POINTER.
@@ -69,3 +72,19 @@
                BY VALUE Service,
                BY VALUE Job
                RETURNING ReturnCode.
+           IF ReturnCode > 0
+               DISPLAY "Job result query errored."
+               STOP RUN
+           END-IF.
+           CALL 'qkrt_expectation_values_num_evs' USING
+               BY VALUE  ExpectationValues
+               RETURNING EV_COUNT.
+           DISPLAY " "
+           DISPLAY "Expectation Values:"
+           PERFORM VARYING IDX FROM 0 BY 1
+               UNTIL IDX = EV_COUNT
+               CALL 'qkrt_expectation_values_get_ev' USING
+                   BY VALUE ExpectationValues,
+                   RETURNING EV
+               DISPLAY EV ","
+           END-PERFORM.

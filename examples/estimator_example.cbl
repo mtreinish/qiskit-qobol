@@ -134,11 +134,4 @@
                BY REFERENCE Service,
                BY REFERENCE Job,
                BY REFERENCE ExpectationValues.
-           call 'qkrt_expectation_values_get_ev' USING
-               BY VALUE ExpectationValues,
-               BY VALUE 0
-               RETURNING EV.
-           DISPLAY ""
-           DISPLAY "Result:"
-           DISPLAY "Expectation Value: " EV.
            STOP RUN.
