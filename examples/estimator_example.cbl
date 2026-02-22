@@ -49,7 +49,7 @@
        000-Main.
            DISPLAY "Building QAOA Ansatz Circuit.".
            MOVE 4 to NUM_QUBITS.
-           MOVE 0 to NUM_CLBITS.
+           MOVE 4 to NUM_CLBITS.
            CALL 'QiskitCreateCircuit' USING
                BY VALUE NUM_QUBITS, NUM_CLBITS,
                BY REFERENCE CIRCUIT.
