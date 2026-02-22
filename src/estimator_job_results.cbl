@@ -35,6 +35,10 @@
        000-Main.
            PERFORM 100-Poll-Status.
            DISPLAY " ".
+           IF STATUSCODE > 2
+               DISPLAY "Job returned an unknown status"
+               STOP RUN
+           END-IF.
            PERFORM 200-Fetch-Results.
            GOBACK.
 
