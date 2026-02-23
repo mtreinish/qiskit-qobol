@@ -96,6 +96,31 @@ Results:
   0x2: 13
 ```
 
+### `estimator_example.cbl`
+
+This script will build the following QAOA Ansatz circuit:
+
+```
+     ┌───┐                                    ┌───────┐
+q_0: ┤ H ├─■──────────────────────────■───────┤ Rx(π) ├
+     ├───┤ │ZZ(2π)          ┌───────┐ │       └───────┘
+q_1: ┤ H ├─■────────■───────┤ Rx(π) ├─┼────────────────
+     ├───┤          │ZZ(2π) └───────┘ │       ┌───────┐
+q_2: ┤ H ├──────────■────────■────────┼───────┤ Rx(π) ├
+     ├───┤                   │ZZ(2π)  │ZZ(2π) ├───────┤
+q_3: ┤ H ├───────────────────■────────■───────┤ Rx(π) ├
+     └───┘                                    └───────┘
+```
+
+In addition it constructs a `SparseObservable` with ZZ terms on
+the indices with RZZ gates which is used to compute the expectation
+value of. The circuit is then transpiled for `ibm_torino` with
+optimization level 2, the resulting layout is then applied to
+the observable. This transpiled circuit and modified observable
+are then submitted as an estimator job on `ibm_torino, and when
+the job finishes executing the program prints the computed
+expectation value.
+
 ## Repository Organization
 
 There are two main directories in the repository, `examples/` and
