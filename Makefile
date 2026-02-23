@@ -27,9 +27,12 @@ build:
 		src/estimator_job_results.cbl \
 		src/obs_new.cbl \
 		src/obs_add_term.cbl \
+		src/expectation_value_count.cbl \
+		src/display_expectation_values.cbl \
 		--debug \
 		-l qiskit \
 		-l qiskit_ibm_runtime
 
 clean:
-	rm build_bell
+	rm -f build_bell
+	rm -f estimator_example

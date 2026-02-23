@@ -24,20 +24,14 @@
        01 SLEEP-TIME.
           02 SLEEP-SECS PIC 9(9) COMP-5 VALUE 5.
           02 SLEEP-NS PIC 9(9) COMP-5 VALUE 0.
-       01 EV_COUNT USAGE BINARY-LONG UNSIGNED.
-       01 IDX USAGE BINARY-LONG UNSIGNED VALUE 0.
-       01 EVS.
-          02 EV USAGE COMP-2 OCCURS 1 TO 512 TIMES
-           DEPENDING ON NumExpectationValues.
 
        LINKAGE SECTION.
        01 Service USAGE POINTER.
        01 Job USAGE POINTER.
        01 ExpectationValues USAGE POINTER.
-       01 NumExpectationValues USAGE BINARY-LONG UNSIGNED.
 
        PROCEDURE DIVISION USING BY REFERENCE Service, Job,
-           ExpectationValues BY VALUE NumExpectationValues.
+           ExpectationValues.
        000-Main.
            PERFORM 100-Poll-Status.
            DISPLAY " ".
@@ -79,15 +73,4 @@
                DISPLAY "Job result query errored."
                STOP RUN
            END-IF.
-           CALL 'qkrt_expectation_values_num_evs' USING
-               BY VALUE  ExpectationValues
-               RETURNING EV_COUNT.
-           DISPLAY " "
-           CALL 'qkrt_expectation_values_copy_into' USING
-               BY VALUE ExpectationValues
-               BY VALUE ADDRESS OF EVS.
-           DISPLAY "Expectation Values:"
-           PERFORM VARYING IDX FROM 1 BY 1
-               UNTIL IDX > EV_COUNT
-               DISPLAY EV(IDX)
-           END-PERFORM.
+           GOBACK.

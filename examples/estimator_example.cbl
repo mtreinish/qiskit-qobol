@@ -44,6 +44,7 @@
        01 ExpectationValues USAGE POINTER.
        01 BACKEND-NAME PIC X(32) VALUE "ibm_fez".
        01 TMP_QUBIT PIC S9(5).
+       01 EV_COUNT USAGE BINARY-LONG UNSIGNED.
 
        PROCEDURE DIVISION.
        000-Main.
@@ -133,6 +134,11 @@
            CALL 'EstimatorJobResults' USING
                BY REFERENCE Service,
                BY REFERENCE Job,
-               BY REFERENCE ExpectationValues
-               BY VALUE 1.
+               BY REFERENCE ExpectationValues.
+           CALL 'ExpectationValuesCount' USING
+           BY REFERENCE ExpectationValues,
+               RETURNING EV_COUNT.
+           CALL 'DisplayExpectationValues' USING
+               BY REFERENCE ExpectationValues,
+               BY VALUE EV_COUNT.
            STOP RUN.
