@@ -49,13 +49,13 @@
        PROCEDURE DIVISION.
        000-Main.
            DISPLAY "Building QAOA Ansatz Circuit.".
-           MOVE 4 to NUM_QUBITS.
-           MOVE 4 to NUM_CLBITS.
+           MOVE 110 to NUM_QUBITS.
+           MOVE 110 to NUM_CLBITS.
            CALL 'QiskitCreateCircuit' USING
                BY VALUE NUM_QUBITS, NUM_CLBITS,
                BY REFERENCE CIRCUIT.
            PERFORM VARYING TMP_QUBIT FROM 0 BY 1
-               UNTIL TMP_QUBIT > 3
+               UNTIL TMP_QUBIT > 109
                MOVE TMP_QUBIT to QUBIT(1)
                CALL 'QiskitCircuitGate' USING BY VALUE H_GATE,
                    BY REFERENCE Circuit,
@@ -64,16 +64,16 @@
            END-PERFORM.
 
            PERFORM VARYING TMP_QUBIT FROM 0 BY 1
-               UNTIL TMP_QUBIT > 3
+               UNTIL TMP_QUBIT > 109
                MOVE TMP_QUBIT TO QUBIT(1)
-               IF TMP_QUBIT = 3
+               IF TMP_QUBIT = 109
                    MOVE 0 TO QUBIT(2)
                ELSE
                    ADD 1 TO TMP_QUBIT
                    MOVE TMP_QUBIT TO QUBIT(2)
                    SUBTRACT 1 FROM TMP_QUBIT
                END-IF
-               MOVE 6.283 TO PARAM(1)
+               MOVE 6.283185307179586 TO PARAM(1)
                CALL 'QiskitCircuitGate' USING BY VALUE RZZ_GATE,
                    BY REFERENCE Circuit,
                    BY REFERENCE GateQubits,
@@ -81,9 +81,9 @@
            END-PERFORM.
 
            PERFORM VARYING TMP_QUBIT FROM 0 BY 1
-               UNTIL TMP_QUBIT > 3
+               UNTIL TMP_QUBIT > 109
                MOVE TMP_QUBIT TO QUBIT(1)
-               MOVE 3.141 TO PARAM(1)
+               MOVE 3.141592653589793 TO PARAM(1)
                CALL 'QiskitCircuitGate' USING BY VALUE RX_GATE,
                    BY REFERENCE Circuit,
                    BY REFERENCE GateQubits,
@@ -99,9 +99,9 @@
            MOVE 1 TO TERM(2).
       / Add ZZ term to (0, 1), (1, 2), (2, 3), (3, 0)
            PERFORM VARYING TMP_QUBIT FROM 0 BY 1
-               UNTIL TMP_QUBIT > 3
+               UNTIL TMP_QUBIT > 109
                MOVE TMP_QUBIT to IDX(1)
-               IF TMP_QUBIT = 3
+               IF TMP_QUBIT = 109
                    MOVE 0 TO IDX(2)
                ELSE
                    ADD 1 TO TMP_QUBIT
