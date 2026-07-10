@@ -21,9 +21,7 @@
        01 ReturnCode PIC S9(10) COMP-5.
        01 PrevStatus PIC 9(10) COMP-5 VALUE 999.
        01 StatusName PIC X(8).
-       01 SLEEP-TIME.
-          02 SLEEP-SECS PIC 9(9) COMP-5 VALUE 5.
-          02 SLEEP-NS PIC 9(9) COMP-5 VALUE 0.
+       01 SLEEP PIC S9(9) BINARY VALUE 5.
 
        LINKAGE SECTION.
        01 Service USAGE POINTER.
@@ -43,7 +41,7 @@
 
        100-Poll-Status.
            PERFORM WITH TEST AFTER UNTIL StatusCode > 1
-               CALL "CBL_GC_NANOSLEEP" USING SLEEP-TIME
+      //               CALL "C$SLEEP" USING SLEEP
                CALL 'qkrt_job_status' USING
                    BY VALUE ADDRESS OF StatusCode,
                    BY VALUE Service,

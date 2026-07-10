@@ -42,7 +42,7 @@
        01 Backend USAGE POINTER.
        01 Job USAGE POINTER.
        01 ExpectationValues USAGE POINTER.
-       01 BACKEND-NAME PIC X(32) VALUE "ibm_fez".
+       01 BACKEND-NAME PIC X(32) VALUE "mock_marrakesh".
        01 TMP_QUBIT PIC S9(5).
        01 EV_COUNT USAGE BINARY-LONG UNSIGNED.
 
@@ -51,6 +51,7 @@
            DISPLAY "Building QAOA Ansatz Circuit.".
            MOVE 110 to NUM_QUBITS.
            MOVE 110 to NUM_CLBITS.
+           DISPLAY "Calling build".
            CALL 'QiskitCreateCircuit' USING
                BY VALUE NUM_QUBITS, NUM_CLBITS,
                BY REFERENCE CIRCUIT.

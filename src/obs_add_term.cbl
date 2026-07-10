@@ -48,8 +48,8 @@
        000-Main.
            MOVE NumQubits TO NUM_QUBITS.
            MOVE NumBitTerms TO LEN.
-           MOVE ADDRESS OF BitTerms TO BIT_TERMS.
-           MOVE ADDRESS OF Indices TO INDICES_ARR.
+           SET BIT_TERMS TO ADDRESS OF BitTerms.
+           SET INDICES_ARR TO ADDRESS OF Indices.
            MOVE Coeff to TERM_COEFF.
            call 'qk_obs_add_term' USING BY VALUE Observable,
                                         BY REFERENCE Term.
