@@ -1,6 +1,6 @@
       / This code is part of Qiskit Qobol.
       /
-      / (C) Copyright Ian Hincks 2026.
+      / (C) Copyright Matthew Treinish 2026.
       /
       / This code is licensed under the Apache License, Version 2.0. You may
       / obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -11,7 +11,7 @@
       / that they have been altered from the originals.
 
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. JobResults.
+       PROGRAM-ID. EstimatorJobResults.
 
        ENVIRONMENT DIVISION.
 
@@ -28,12 +28,17 @@
        LINKAGE SECTION.
        01 Service USAGE POINTER.
        01 Job USAGE POINTER.
-       01 Samples USAGE POINTER.
+       01 ExpectationValues USAGE POINTER.
 
-       PROCEDURE DIVISION USING BY REFERENCE Service, Job, Samples.
+       PROCEDURE DIVISION USING BY REFERENCE Service, Job,
+           ExpectationValues.
        000-Main.
            PERFORM 100-Poll-Status.
            DISPLAY " ".
+           IF STATUSCODE > 2
+               DISPLAY "Job returned an unknown status"
+               STOP RUN
+           END-IF.
            PERFORM 200-Fetch-Results.
            GOBACK.
 
@@ -59,8 +64,13 @@
            END-PERFORM.
 
        200-Fetch-Results.
-           CALL 'qkrt_job_results' USING
-               BY VALUE ADDRESS OF Samples,
+           CALL 'qkrt_estimator_job_results' USING
+               BY VALUE ADDRESS OF ExpectationValues,
                BY VALUE Service,
                BY VALUE Job
                RETURNING ReturnCode.
+           IF ReturnCode > 0
+               DISPLAY "Job result query errored."
+               STOP RUN
+           END-IF.
+           GOBACK.

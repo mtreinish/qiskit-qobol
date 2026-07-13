@@ -26,8 +26,6 @@
        PROCEDURE DIVISION USING BY VALUE NumQubits, NumClbits, BY
            REFERENCE Circuit.
        000-Main.
-           DISPLAY "Creating new circuit with qubits: " NumQubits.
-           DISPLAY "CLBITS: " NumClbits.
            call 'qk_circuit_new' USING BY VALUE NumQubits,
                                        BY VALUE NumClbits,
                                        RETURNING Circuit.

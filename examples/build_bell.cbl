@@ -17,12 +17,12 @@
        WORKING-STORAGE SECTION.
        01 NUM_QUBITS USAGE BINARY-LONG UNSIGNED.
        01 NUM_CLBITS USAGE BINARY-LONG UNSIGNED.
-       01 H_GATE USAGE BINARY-SHORT UNSIGNED VALUE 1.
-       01 CX_GATE USAGE BINARY-SHORT UNSIGNED VALUE 22.
+       01 H_GATE USAGE BINARY-CHAR UNSIGNED VALUE 1.
+       01 CX_GATE USAGE BINARY-CHAR UNSIGNED VALUE 22.
        01 QUBIT_MEASURE USAGE BINARY-LONG VALUE 0.
        01 CLBIT_MEASURE USAGE BINARY-LONG VALUE 0.
        01 GateQubits.
-           02 QUBIT USAGE BINARY PIC S9(5) OCCURS 3 TIMES.
+           02 QUBIT BINARY-LONG UNSIGNED OCCURS 3 TIMES.
        01 GateParams.
            02 PARAM USAGE COMP-2 OCCURS 3 TIMES.
        01 CIRCUIT USAGE POINTER.
@@ -70,16 +70,16 @@
                BY REFERENCE Backend,
                BY REFERENCE Circuit,
                BY REFERENCE Job.
-           CALL 'JobResults' USING
+           CALL 'SamplerJobResults' USING
                BY REFERENCE Service,
                BY REFERENCE Job,
                BY REFERENCE Samples.
-           CALL 'qkrt_samples_to_counts_histogram' USING
+           CALL 'qkrt_samples_to_counts' USING
                BY VALUE Samples
                RETURNING Counts.
-           CALL 'qkrt_counts_histogram_display' USING
+           CALL 'qkrt_counts_display' USING
                BY VALUE Counts.
-           CALL 'qkrt_counts_histogram_free' USING
+           CALL 'qkrt_counts_free' USING
                BY VALUE Counts.
            CALL 'qkrt_samples_free' USING BY VALUE Samples.
            STOP RUN.
