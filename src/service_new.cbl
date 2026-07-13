@@ -19,7 +19,9 @@
        WORKING-STORAGE SECTION.
        01 CONFIG.
            02 TOKEN USAGE POINTER.
-           02 URL USAGE POINTER.
+           02 IAM_URL USAGE POINTER.
+           02 IQP_URL USAGE POINTER.
+           02 GLOBAL_SEARCH_URL USAGE POINTER.
            02 USER_AGENT USAGE POINTER.
            02 FILENAME USAGE POINTER.
            02 ACCOUNT_NAME USAGE POINTER.
@@ -34,7 +36,9 @@
            SET USER_AGENT TO ADDRESS OF COBOL_USER_AGENT.
            SET TOKEN TO NULL.
            SET FILENAME TO NULL.
-           SET URL TO NULL.
+           SET IQP_URL TO NULL.
+           SET IAM_URL TO NULL.
+           SET GLOBAL_SEARCH_URL TO NULL.
            SET ACCOUNT_NAME to NULL
            CALL 'qkrt_service_new_from_config' USING BY VALUE 
                ADDRESS OF CONFIG,
