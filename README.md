@@ -19,7 +19,7 @@ To build Qiskit Qobol you need the following dependencies installed
 
 1. GnuCOBOL 3.2.0
 2. `libqiskit` 2.3.0 ([Qiskit](https://github.com/Qiskit/qiskit)'s C API)
-3. `libqiskit_ibm_runtime` with PR [#14](https://github.com/Qiskit/qiskit-ibm-runtime-c/pull/14)
+3. `libqiskit_ibm_runtime` ([Qiskit IBM Runtime C](https://github.com/Qiskit/qiskit-ibm-runtime-c)
 
 To install `libqiskit` and `libqiskit_ibm_runtime` you will typically need `git` and Rust >= 1.85.
 But any installation method will work for them, the most common just involves building from source.
