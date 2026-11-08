@@ -1,4 +1,5 @@
 build_deps/
 build_bell
 estimator_example
+display_qaoa_ansatz
 qiskit_interface.o

@@ -51,17 +51,17 @@ COBOL.
 
 ## Running the examples
 
-All the example scripts are setup to read your IBM Quantum Platform
+All the example programs are setup to read your IBM Quantum Platform
 credentials from `~/.qiskit/qiskit-ibm.json` which is the default
 place that [qiskit-ibm-runtime](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime), the Python client package for Qiskit
 to work with IBM Quantum. It will load the default credentials
 from this file and use these for interacting with
 IBM Quantum Platform. You will need this credential file setup
-to run the example scripts.
+to run the example programs.
 
 ### `build_bell`
 
-This script will build a bell state circuit of the form:
+This program will build a bell state circuit of the form:
 
 ```
      ┌───┐     ┌─┐
@@ -102,7 +102,7 @@ have access to.
 
 ### `estimator_example.cbl`
 
-This script will build the following QAOA Ansatz circuit:
+This program will build the following QAOA Ansatz circuit:
 
 ```
      ┌───┐                                    ┌───────┐
@@ -128,6 +128,14 @@ expectation value.
 The backend being run is hardcoded in the source file `examples/estimator_example.cbl`
 you can replace the string `ibm_chicago` with any IBM Quantum backend that you
 have access to.
+
+### `display_qaoa_ansatz.cbl`
+
+This program is slightly different from the above two in that it will just build
+a circuit and display the test visualization of the circuit diagram. It builds
+a simiar ansatz circuit to what runs in `estimator_example.cbl` but instead uses
+RZX gates and a different parameter value. This program only depends on Qiskit
+and will not use Qiskit IBM Runtime C.
 
 ## Repository Organization
 
