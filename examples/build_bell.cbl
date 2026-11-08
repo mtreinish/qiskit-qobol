@@ -30,7 +30,7 @@
        01 Backend USAGE POINTER.
        01 Job USAGE POINTER.
        01 Samples USAGE POINTER.
-       01 BACKEND-NAME PIC X(32) VALUE "mock_boston".
+       01 BACKEND-NAME PIC X(32) VALUE "ibm_chicago".
 
        PROCEDURE DIVISION.
        000-Main.

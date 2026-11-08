@@ -1,3 +1,4 @@
+#!/bin/sh
 # This code is part of Qiskit Qobol.
 # 
 # (C) Copyright Matthew Treinish 2026.
@@ -35,7 +36,7 @@ if [[ ! -d qiskit ]] ; then
 fi
 
 pushd qiskit
-git checkout 2.6.1
+git checkout 2.6.2
 make c
 sudo cp dist/c/lib/libqiskit.so /usr/local/lib/.
 sudo cp -r dist/c/include/* /usr/local/include/.
