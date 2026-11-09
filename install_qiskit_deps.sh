@@ -1,3 +1,4 @@
+#!/bin/sh
 # This code is part of Qiskit Qobol.
 # 
 # (C) Copyright Matthew Treinish 2026.
@@ -35,7 +36,7 @@ if [[ ! -d qiskit ]] ; then
 fi
 
 pushd qiskit
-git checkout 2.3.0
+git checkout 2.6.2
 make c
 sudo cp dist/c/lib/libqiskit.so /usr/local/lib/.
 sudo cp -r dist/c/include/* /usr/local/include/.
@@ -46,10 +47,6 @@ if [[ ! -d qiskit-ibm-runtime-c ]] ; then
 fi
 
 pushd qiskit-ibm-runtime-c
-git remote add mtreinish https://github.com/mtreinish/qiskit-ibm-runtime-c || true
-git fetch mtreinish
-git checkout add-user-defined-service-path
-git merge mtreinish/evs-copy --no-commit
 cargo build --release
 sudo cp -r include/* /usr/local/include/.
 sudo cp target/release/libqiskit_ibm_runtime.so /usr/local/lib/.

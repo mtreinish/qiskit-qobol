@@ -31,6 +31,14 @@ build:
 		--debug \
 		-l qiskit \
 		-l qiskit_ibm_runtime
+	cobc -fbinary-byteorder=native -fstatic-call -w -x \
+		examples/display_qaoa_ansatz.cbl \
+		src/circuit_gate.cbl \
+		src/circuit_measure.cbl \
+		src/circuit_new.cbl \
+		src/circuit_draw.cbl \
+		-debug \
+		-l qiskit
 
 clean:
 	rm -f build_bell

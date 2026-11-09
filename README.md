@@ -18,8 +18,8 @@ supported.
 To build Qiskit Qobol you need the following dependencies installed
 
 1. GnuCOBOL 3.2.0
-2. `libqiskit` 2.3.0 ([Qiskit](https://github.com/Qiskit/qiskit)'s C API)
-3. `libqiskit_ibm_runtime` with PR [#14](https://github.com/Qiskit/qiskit-ibm-runtime-c/pull/14)
+2. `libqiskit` 2.6.2 ([Qiskit](https://github.com/Qiskit/qiskit)'s C API)
+3. `libqiskit_ibm_runtime` ([Qiskit IBM Runtime C](https://github.com/Qiskit/qiskit-ibm-runtime-c))
 
 To install `libqiskit` and `libqiskit_ibm_runtime` you will typically need `git` and Rust >= 1.85.
 But any installation method will work for them, the most common just involves building from source.
@@ -33,7 +33,7 @@ $ ./install_deps.sh
 $ make
 ```
 
-The `./install_deps.sh` script will build Qiskit v2.3.0 and
+The `./install_deps.sh` script will build Qiskit v2.6.2 and
 qiskit-ibm-runtime-c at the correct version and then install them
 in you system. If you already have either installed on your system
 or would prefer to install this on your own do not run this script.
@@ -51,17 +51,17 @@ COBOL.
 
 ## Running the examples
 
-All the example scripts are setup to read your IBM Quantum Platform
+All the example programs are setup to read your IBM Quantum Platform
 credentials from `~/.qiskit/qiskit-ibm.json` which is the default
 place that [qiskit-ibm-runtime](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime), the Python client package for Qiskit
 to work with IBM Quantum. It will load the default credentials
 from this file and use these for interacting with
 IBM Quantum Platform. You will need this credential file setup
-to run the example scripts.
+to run the example programs.
 
 ### `build_bell`
 
-This script will build a bell state circuit of the form:
+This program will build a bell state circuit of the form:
 
 ```
      ┌───┐     ┌─┐
@@ -73,9 +73,9 @@ c: 2/═══════════╩══╩═
                 0  1
 ```
 
-transpile that circuit for the `ibm_torino` backend with
+transpile that circuit for the `ibm_chicago` backend with
 optimization level 2, and then submit a sampler job to run the
-circuit on `ibm_torino` with 1000 shots, and when the job finishes
+circuit on `ibm_chicago` with 1000 shots, and when the job finishes
 executing on the backend it will print the resulting counts. The
 typical output of this program should look like:
 
@@ -96,9 +96,13 @@ Results:
   0x2: 13
 ```
 
+The backend being run is hardcoded in the source file `examples/build_bell.cbl`
+you can replace the string `ibm_chicago` with any IBM Quantum backend that you
+have access to.
+
 ### `estimator_example.cbl`
 
-This script will build the following QAOA Ansatz circuit:
+This program will build the following QAOA Ansatz circuit:
 
 ```
      ┌───┐                                    ┌───────┐
@@ -114,12 +118,24 @@ q_3: ┤ H ├───────────────────■──
 
 In addition it constructs a `SparseObservable` with ZZ terms on
 the indices with RZZ gates which is used to compute the expectation
-value of. The circuit is then transpiled for `ibm_torino` with
+value of. The circuit is then transpiled for `ibm_chicago` with
 optimization level 2, the resulting layout is then applied to
 the observable. This transpiled circuit and modified observable
-are then submitted as an estimator job on `ibm_torino, and when
+are then submitted as an estimator job on `ibm_chicago`, and when
 the job finishes executing the program prints the computed
 expectation value.
+
+The backend being run is hardcoded in the source file `examples/estimator_example.cbl`
+you can replace the string `ibm_chicago` with any IBM Quantum backend that you
+have access to.
+
+### `display_qaoa_ansatz.cbl`
+
+This program is slightly different from the above two in that it will just build
+a circuit and display the test visualization of the circuit diagram. It builds
+a simiar ansatz circuit to what runs in `estimator_example.cbl` but instead uses
+RZX gates and a different parameter value. This program only depends on Qiskit
+and will not use Qiskit IBM Runtime C.
 
 ## Repository Organization
 

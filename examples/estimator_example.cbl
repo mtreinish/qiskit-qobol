@@ -42,7 +42,7 @@
        01 Backend USAGE POINTER.
        01 Job USAGE POINTER.
        01 ExpectationValues USAGE POINTER.
-       01 BACKEND-NAME PIC X(32) VALUE "ibm_fez".
+       01 BACKEND-NAME PIC X(32) VALUE "ibm_chicago".
        01 TMP_QUBIT PIC S9(5).
        01 EV_COUNT USAGE BINARY-LONG UNSIGNED.
 
@@ -122,7 +122,7 @@
                BY REFERENCE BACKEND-NAME,
                BY REFERENCE Backend.
            IF Backend = NULL
-               DISPLAY "Invalid backend 'ibm_torino'"
+               DISPLAY "Invalid backend 'ibm_chicago'"
                STOP RUN
            END-IF.
            CALL 'ExecuteEstimator' USING
