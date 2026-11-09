@@ -30,6 +30,7 @@
        01 Backend USAGE POINTER.
        01 Job USAGE POINTER.
        01 Samples USAGE POINTER.
+       01 Counts USAGE POINTER.
        01 BACKEND-NAME PIC X(32) VALUE "ibm_chicago".
 
        PROCEDURE DIVISION.
@@ -75,4 +76,5 @@
                BY REFERENCE Samples.
            CALL 'Histogram' USING
                BY REFERENCE Samples.
+           CALL 'qkrt_samples_free' USING BY VALUE Samples.
            STOP RUN.
