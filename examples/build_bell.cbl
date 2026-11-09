@@ -74,12 +74,7 @@
                BY REFERENCE Service,
                BY REFERENCE Job,
                BY REFERENCE Samples.
-           CALL 'qkrt_samples_to_counts' USING
-               BY VALUE Samples
-               RETURNING Counts.
-           CALL 'qkrt_counts_display' USING
-               BY VALUE Counts.
-           CALL 'qkrt_counts_free' USING
-               BY VALUE Counts.
+           CALL 'Histogram' USING
+               BY REFERENCE Samples.
            CALL 'qkrt_samples_free' USING BY VALUE Samples.
            STOP RUN.

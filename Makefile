@@ -11,6 +11,7 @@ build:
 		src/backend_by_name.cbl \
 		src/execute.cbl \
 		src/sampler_job_results.cbl \
+		src/histogram.cbl \
 		-debug \
 		-l qiskit \
 		-l qiskit_ibm_runtime
